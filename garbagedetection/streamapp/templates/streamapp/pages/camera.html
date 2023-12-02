@@ -1,0 +1,12 @@
+{% extends 'streamapp/layout/base.html'%}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-b from-emerald-500 to-emerald-900">
+    <div class="max-w-6xl p-4 bg-white rounded shadow-lg">
+        <h1 class="text-xl font-semibold mb-4">Webcam App</h1>
+        <div class="w-full border border-gray-300 flex justify-center items-center">
+            <img src="{% url 'detect' %}">
+        </div>
+    </div>
+</div>
+{% endblock %}
