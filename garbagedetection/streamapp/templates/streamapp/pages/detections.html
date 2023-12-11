@@ -1,12 +1,13 @@
 {% extends 'streamapp/layout/base.html'%} {% load static %} {% block content %}
-<div class="h-screen bg-gradient-to-b from-emerald-500 to-emerald-900">
-  <div class="max-w-6xl max-h p-4 bg-white rounded shadow-lg">
-    <h1 class="text-xl font-semibold mb-4">Detection List</h1>
-    {% for item in data %} 
-    
-      <img src="/media/{{ item.image }}" alt="{{item}}" width="500px" height="100px"> 
-      <h3 class="">{{ item.date_created}}</h3>
-    {% endfor %}
-  </div>
+<!-- <div class="h-screen bg-gradient-to-b from-emerald-500 to-emerald-900"> -->
+<div class="max-w-6xl max-h p-4 bg-white rounded shadow-lg">
+  <h1 class="text-xl font-semibold mb-4">Detection List</h1>
+  {% for item in data %}
+
+  <img src="/media/{{ item.image }}" alt="{{item}}" width="500px" height="100px">
+  <h3 class="">{{ item.date_created}}</h3>
+  {% endfor %}
+
 </div>
+<!-- </div> -->
 {% endblock %}

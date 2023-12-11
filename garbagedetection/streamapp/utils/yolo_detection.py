@@ -15,7 +15,7 @@ def gradien(titik1, titik2):
 
 
 def is_point_on_line(x, y, ujung_kiri, ujung_kanan):
-    # Tentukan gradien antara titik acak (x,y) terhadap titik ujung kiri.
+    # Tentukan gradien antara titik acak (x,y) terhadap titik ujung kanan.
     m_titik = round(gradien((x, y), ujung_kanan))
 
     # Tentukan gradien dari ujung kiri ke ujung kanan.
@@ -31,10 +31,10 @@ def is_point_on_line(x, y, ujung_kiri, ujung_kanan):
 class ModelYOLO:
     """Model class"""
 
-    weight_name = "best.pt"
+    weight_name = "best(1).pt"
     # weight_name = "yolov8x.pt"
     model = None
-
+ 
     def __init__(self):
         for f in os.listdir("streamapp/utils"):
             if f == self.weight_name:
@@ -58,6 +58,9 @@ class ModelYOLO:
             px = pd.DataFrame(a).astype("float")
 
             list = []
+            xa_ya = (1, 268)
+            xb_yb = (534, 476)
+
 
             if not px.empty:
                 for index, row in px.iterrows():
@@ -76,7 +79,7 @@ class ModelYOLO:
                     cv2.circle(frame, (cx, cy), 4, (255, 0, 255), -1)
                     cv2.rectangle(frame, (x3, y3), (x4, y4), (0, 0, 255), 2)
 
-                if is_point_on_line(cx, cy, (1, 268), (534, 476)):
+                if is_point_on_line(cx, cy, xa_ya, xb_yb):
                     base_file = os.getcwd()
                     filename = f'output/{uuid.uuid4().hex}.jpg'
                     file_path = f'{base_file}/media/{filename}'
@@ -90,7 +93,7 @@ class ModelYOLO:
             else:
                 print("Data kosong")
 
-            cv2.line(frame, (1, 268), (534, 476), (0, 255, 0), 2)
+            cv2.line(frame, xa_ya, xb_yb, (0, 255, 0), 2)
             # Visualize results on the frame
             # annotated_frame = results[0].plot()
             # annotated_frame = cv2.rectangle(annotated_frame, (900, 900), (1080, 1920), (255, 0, 0), 2)

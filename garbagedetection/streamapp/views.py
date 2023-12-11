@@ -6,6 +6,7 @@ from .utils.yolo_detection import ModelYOLO
 from .models import Detection
 
 
+
 @gzip.gzip_page
 def index(request):
     return render(request, "streamapp/pages/camera.html")
@@ -18,7 +19,7 @@ def detections(request):
 
 
 def get_camera(response):
-    cam = VideoCamera(2)
+    cam = VideoCamera(3)
     try:
         return StreamingHttpResponse(
             gen(cam), content_type="multipart/x-mixed-replace;boundary=frame"
